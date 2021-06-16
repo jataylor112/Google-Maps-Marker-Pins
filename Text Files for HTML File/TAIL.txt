@@ -1,0 +1,47 @@
+  infowindow = new google.maps.InfoWindow();
+  for (var location = 0; location < markerLocations.length; location++) {
+        var ipLocation = markerLocations[location];
+        var markerPin = new google.maps.Marker({
+     position: {lat: ipLocation[1],lng: ipLocation[2]},
+     map: map,
+     title: ipLocation[0],
+       });
+     for (var index = 0; index < sort_markerLocations.length; index++) {
+          var sort_Index = sort_markerLocations[index][1];
+          var sort_Frequency = sort_markerLocations[index][0];
+          if (sort_Index == markerPin.title) {
+                  if (sort_Frequency == 1) {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|8F00FF' );
+                  }
+                  else if (sort_Frequency > 1 && sort_Frequency <= 5) {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4B0082' );
+                  }
+                  else if (sort_Frequency > 5 && sort_Frequency <= 10) {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0000FF' );
+                  }
+                  else if (sort_Frequency > 10 && sort_Frequency <= 28) {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00' );
+                  }
+                  else if (sort_Frequency > 28 && sort_Frequency <= 60) {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00' );
+                  }
+                  else if (sort_Frequency > 60 && sort_Frequency <= 178) {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF7F00' );
+                  }
+                  else {
+                          markerPin.setIcon( 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000' );
+                  }
+          }
+     }
+     google.maps.event.addListener(markerPin, 'click', (function(markerPin, location) {
+          return function() {
+          infowindow.setContent(markerLocations[location][0]);
+          infowindow.open(map, markerPin);
+          }
+    })(markerPin, location));
+  }
+}
+</script> <script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD9rIDcTNecNHWOnNriuFi6eCKugagx8XE&callback=initMap'></script>
+ <p><b>Jarrett Taylor: CSC382 - FINAL PROJECT</b></p>
+</body>
+</html>

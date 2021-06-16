@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer Locations via Google Maps</title>
+<style>
+ 	#map {
+		height: 800px;
+		width: 100%;
+	}
+	body {
+		background-color: #ff9999
+	}
+</style>
+</head>
+<body>
+/* The first step I've took to solving this problem was implementing a script
+that curls all IP addresses in a loop then extracts them for their latitude
+and longitude. Next, I wrote another script that reads through the same IPs,
+setting each IP next to its latitude and longitude extracted via the same line
+number in the separate geolocation files from the previous script. Afterwards,
+the script extracts the same IP addresses again, sorts them by unique values,
+and puts them into a separate array that'd be used to determine its color
+marker based off how frequent it appears in the list. As the loops created the
+arrays, separate files were made as temporary storage until it was needed.
+These files were then removed upon completion, saving the final text files as
+MIDDLE.txt that'd be combined with other text files. In this script, I've
+also wrote separate text files for the first half of this HTML file, and the
+last half that comes after the middle part, where the arrays are created.
+In the first part of this script, I've specified the map's size and its
+background color alongside the start of the function that specifies the map as
+HEAD.txt. In the last half, I've finished the function specifications,
+including its IP popup and how the markers should be colored before setting the
+Google API key to generate the map as TAIL.txt. These files were put together
+to form a single HTML file titled markerMAP.html in conclusion. */
+<h1>Customer Locations via Google Maps</h1>
+<div id=map></div>
+<script type=text/javascript>
+function initMap() {
+	      var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 3,
+			center: {lat: 25, lng: 0},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+	      });
+ 	var markerLocations = [
